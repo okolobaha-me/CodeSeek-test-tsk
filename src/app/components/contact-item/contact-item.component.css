@@ -1,0 +1,12 @@
+.item {
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.contact-name,
+.contact-phone {
+  font-size: 16px;
+  line-height: 1.3;
+}
