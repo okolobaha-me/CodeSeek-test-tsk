@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { baselineElements } from '../../../utils/baselineElements';
-import { IContact } from '../../../utils/types';
+import { contactList, IContact } from '../../../utils/types';
+import { ContactsService } from '../../services/contacts.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contact-list',
@@ -8,8 +9,18 @@ import { IContact } from '../../../utils/types';
   styleUrls: ['./contact-list.component.css'],
 })
 export class ContactListComponent implements OnInit {
-  contacts: IContact[] = baselineElements;
-  constructor() {}
+  contacts: contactList = this.contactService.getExistingContacts();
+  subscription: Subscription;
+
+  constructor(private contactService: ContactsService) {
+    this.subscription = this.contactService
+      .getContacts()
+      .subscribe((value) => (this.contacts = value));
+  }
 
   ngOnInit(): void {}
+
+  deleteContact(contact: IContact) {
+    this.contactService.onDelete(contact);
+  }
 }

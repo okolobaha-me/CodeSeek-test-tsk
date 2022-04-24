@@ -1,4 +1,5 @@
 <li class="item">
   <h3 class="contact-name">{{ contact.name }} {{ contact.surname }} :</h3>
   <span class="contact-phone"> {{ " " + contact.phoneNumber }}</span>
+  <button (click)="onDelete(contact)">delete</button>
 </li>

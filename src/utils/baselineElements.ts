@@ -11,7 +11,7 @@ export const baselineElements: contactList = [
     address: 'Russia',
   },
   {
-    id: '1',
+    id: '2',
     name: 'Jason',
     surname: 'Statham',
     phoneNumber: '+380222222222',
@@ -20,7 +20,7 @@ export const baselineElements: contactList = [
     address: 'London',
   },
   {
-    id: '1',
+    id: '3',
     name: 'Tommy',
     surname: '',
     phoneNumber: '+380333333333',
@@ -29,7 +29,7 @@ export const baselineElements: contactList = [
     address: 'London',
   },
   {
-    id: '1',
+    id: '4',
     name: 'Pulford',
     surname: '',
     phoneNumber: '+3804444444',
@@ -38,7 +38,7 @@ export const baselineElements: contactList = [
     address: 'London',
   },
   {
-    id: '1',
+    id: '5',
     name: 'Mickey',
     surname: 'O’Neil',
     phoneNumber: '+380555555555',
@@ -47,7 +47,7 @@ export const baselineElements: contactList = [
     address: 'ireland',
   },
   {
-    id: '1',
+    id: '6',
     name: 'Tony',
     surname: '',
     phoneNumber: '+3806666666',
@@ -56,7 +56,7 @@ export const baselineElements: contactList = [
     address: 'NY',
   },
   {
-    id: '1',
+    id: '7',
     name: 'Franky ',
     surname: '',
     phoneNumber: '+3807777777',
