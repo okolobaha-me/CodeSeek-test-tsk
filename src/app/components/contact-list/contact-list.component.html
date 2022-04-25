@@ -1,4 +1,9 @@
 <ul class="list">
+  <input
+    [(ngModel)]="filter"
+    (input)="setFilter()"
+    *ngIf="contacts.length || filter"
+  />
   <app-contact-item
     *ngFor="let contact of contacts"
     [contact]="contact"

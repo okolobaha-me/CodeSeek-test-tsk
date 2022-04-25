@@ -10,12 +10,12 @@ import { ContactsService } from '../../services/contacts.service';
   styleUrls: ['./add-form.component.css'],
 })
 export class AddFormComponent implements OnInit {
-  name: string;
-  surname: string;
-  phoneNumber: string;
-  birthDate: string;
-  email: string;
-  address: string;
+  name: string = '';
+  surname: string = '';
+  phoneNumber: string = '';
+  birthDate: string = '';
+  email: string = '';
+  address: string = '';
 
   constructor(private contactService: ContactsService) {}
 

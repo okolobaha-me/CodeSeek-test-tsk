@@ -1,2 +1,2 @@
-<app-add-form></app-add-form>
-<app-contact-list></app-contact-list>
+<app-add-form *ngIf="hasRoute('/')"></app-add-form>
+<router-outlet></router-outlet>
