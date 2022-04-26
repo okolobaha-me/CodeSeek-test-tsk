@@ -2,6 +2,7 @@
   <button
     class="btn {{ isOpenAddModal ? 'btn-danger' : 'btn-primary' }} custom"
     (click)="toggleOpenModal()"
+    *ngIf="hasRoute('/')"
   >
     {{ isOpenAddModal ? "Close" : "Add" }}
   </button>
