@@ -1,8 +1,0 @@
-.custom-gap {
-  gap: 5px;
-}
-
-.custom-space {
-  display: flex;
-  justify-content: space-between;
-}
