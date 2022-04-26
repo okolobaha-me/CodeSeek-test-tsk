@@ -8,10 +8,15 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'CodeSeek';
+  isOpenAddModal: boolean = false;
 
   constructor(private router: Router) {}
 
   hasRoute(route: string) {
     return this.router.url === route;
+  }
+
+  toggleOpenModal() {
+    this.isOpenAddModal = !this.isOpenAddModal;
   }
 }

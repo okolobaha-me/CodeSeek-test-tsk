@@ -1,3 +1,7 @@
 .container-sm.width {
   max-width: 600px;
 }
+
+.custom {
+  margin-bottom: 20px;
+}

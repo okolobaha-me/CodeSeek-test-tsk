@@ -1,4 +1,14 @@
 <div class="container-sm width">
-  <app-form *ngIf="hasRoute('/')" [type]="'add'"></app-form>
+  <button
+    class="btn {{ isOpenAddModal ? 'btn-danger' : 'btn-primary' }} custom"
+    (click)="toggleOpenModal()"
+  >
+    {{ isOpenAddModal ? "Close" : "Add" }}
+  </button>
+  <app-form
+    *ngIf="hasRoute('/') && isOpenAddModal"
+    [type]="'add'"
+    (submit)="toggleOpenModal()"
+  ></app-form>
   <router-outlet></router-outlet>
 </div>
