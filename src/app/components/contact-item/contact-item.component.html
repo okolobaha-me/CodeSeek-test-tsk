@@ -1,0 +1,14 @@
+<li class="list-group-item custom-space">
+  <div class="btn-group-vertical">
+    <h3 class="h5">{{ contact.name }} {{ contact.surname }} :</h3>
+    <span class="contact-phone"> {{ " " + contact.phoneNumber }}</span>
+  </div>
+  <div class="btn-group-vertical custom-gap">
+    <a [routerLink]="['details', contact.id]" class="btn btn-primary btn-sm"
+      >details</a
+    >
+    <button (click)="onDelete(contact)" class="btn btn-danger btn-sm">
+      delete
+    </button>
+  </div>
+</li>
