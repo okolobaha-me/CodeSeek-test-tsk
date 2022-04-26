@@ -54,7 +54,6 @@ export class ContactsService {
   }
 
   onDelete(contact: IContact): void {
-    console.log(this.contacts);
     this.contacts = this.contacts.filter((c) => c.id !== contact.id);
     this.contactListSubject.next(this.getVisibleContacts());
     this.updateLocalStorage();

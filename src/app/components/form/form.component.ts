@@ -1,10 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { IContact } from '../../../utils/types';
 import { ContactsService } from '../../services/contacts.service';
 import { Notify } from 'notiflix';
 import { nanoid } from 'nanoid';
+
+export function IpValidator(control: FormControl): ValidationErrors {
+  // @ts-ignore
+  return /(\d{1,3}\.){3}\d{1,3}/.test(control.value) ? null : { ip: true };
+}
 
 @Component({
   selector: 'app-form',
@@ -23,6 +28,13 @@ export class FormComponent implements OnInit {
     birthDate: '',
     email: '',
     address: '',
+  };
+  form = new FormGroup({});
+
+  options: FormlyFormOptions = {
+    formState: {
+      disabled: true,
+    },
   };
 
   @Output()
@@ -56,8 +68,6 @@ export class FormComponent implements OnInit {
     };
   }
 
-  form = new FormGroup({});
-
   fields: FormlyFieldConfig[] = [
     {
       key: 'name',
@@ -66,6 +76,15 @@ export class FormComponent implements OnInit {
         label: 'Name',
         placeholder: 'Enter name',
         required: true,
+        maxLength: 20,
+      },
+      validation: {
+        messages: {
+          minLength: 'hi',
+        },
+      },
+      expressionProperties: {
+        'templateOptions.disabled': 'formState.disabled',
       },
     },
     {
@@ -75,21 +94,42 @@ export class FormComponent implements OnInit {
         label: 'Surname',
         placeholder: 'Enter surname',
         required: false,
+        maxLength: 20,
+      },
+      expressionProperties: {
+        'templateOptions.disabled': 'formState.disabled',
       },
     },
     {
       key: 'phoneNumber',
-      type: 'tel',
+      type: 'input',
       templateOptions: {
+        type: 'tel',
         label: 'Phone number',
         placeholder: 'Enter phone',
-        required: false,
+        required: true,
+        pattern: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
+      },
+      validation: {
+        messages: {
+          pattern: (error, field: FormlyFieldConfig) => {
+            const value = field.formControl;
+            if (typeof value === 'object') {
+              return `"${value.value}" is not a valid phone number`;
+            }
+            return ``;
+          },
+        },
+      },
+      expressionProperties: {
+        'templateOptions.disabled': 'formState.disabled',
       },
     },
     {
       key: 'birthDate',
       type: 'input',
       templateOptions: {
+        type: 'date',
         label: 'Birth date',
         placeholder: 'Enter phone',
         required: false,
@@ -99,9 +139,24 @@ export class FormComponent implements OnInit {
       key: 'email',
       type: 'input',
       templateOptions: {
+        pattern: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
         label: 'Email address',
         placeholder: 'Enter email',
         required: false,
+      },
+      validation: {
+        messages: {
+          pattern: (error, field: FormlyFieldConfig) => {
+            const value = field.formControl;
+            if (typeof value === 'object') {
+              return `"${value.value}" is not a valid email`;
+            }
+            return ``;
+          },
+        },
+      },
+      expressionProperties: {
+        'templateOptions.disabled': 'formState.disabled',
       },
     },
     {

@@ -10,7 +10,6 @@ import { DetailsComponent } from './components/details/details.component';
 import { FormComponent } from './components/form/form.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
-import { TelComponent } from './formComponents/tel/tel.component';
 
 const appRoutes: Routes = [
   { path: '', component: ContactListComponent },
@@ -24,7 +23,6 @@ const appRoutes: Routes = [
     ContactItemComponent,
     DetailsComponent,
     FormComponent,
-    TelComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +30,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     FormlyModule.forRoot({
-      types: [{ name: 'tel', component: TelComponent }],
+      validationMessages: [
+        { name: 'required', message: 'this field is required' },
+      ],
     }),
     FormlyBootstrapModule,
   ],

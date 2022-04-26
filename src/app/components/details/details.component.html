@@ -1,11 +1,19 @@
-<div class="deatails" *ngIf="!isEditing">
-  <p>name: {{ contact.name }}</p>
-  <p *ngIf="contact.surname">surname: {{ contact.surname }}</p>
-  <p>phone number: {{ contact.phoneNumber }}</p>
-  <p *ngIf="contact.birthDate">birth date: {{ contact.birthDate }}</p>
-  <p *ngIf="contact.email">email: {{ contact.email }}</p>
-  <p *ngIf="contact.address">address: {{ contact.address }}</p>
-</div>
+<ul class="list-group" *ngIf="!isEditing">
+  <li class="list-group-item">name: {{ contact.name }}</li>
+  <li class="list-group-item" *ngIf="contact.surname">
+    surname: {{ contact.surname }}
+  </li>
+  <li class="list-group-item">phone number: {{ contact.phoneNumber }}</li>
+  <li class="list-group-item" *ngIf="contact.birthDate">
+    birth date: {{ contact.birthDate }}
+  </li>
+  <li class="list-group-item" *ngIf="contact.email">
+    email: {{ contact.email }}
+  </li>
+  <li class="list-group-item" *ngIf="contact.address">
+    address: {{ contact.address }}
+  </li>
+</ul>
 
 <app-form
   [contact]="editingModel"
@@ -14,8 +22,14 @@
   (submit)="handleEdit(contact)"
 ></app-form>
 
-<button type="button" (click)="toggleEditing()">
-  {{ isEditing ? "close" : "edit" }}
-</button>
+<div class="btn-group custom-group">
+  <button
+    type="button"
+    (click)="toggleEditing()"
+    class="btn btn-primary btn-sm"
+  >
+    {{ isEditing ? "close" : "edit" }}
+  </button>
 
-<a routerLink="/">back</a>
+  <a routerLink="/" class="btn btn-primary btn-sm">back</a>
+</div>
